@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QFrame>
+#include <QPixmap>
 
 int main(int argc, char *argv[])
 {
@@ -22,8 +23,12 @@ int main(int argc, char *argv[])
     //grid.addWidget(new QLabel(QString("row: %1, collum: %2").arg(i).arg(j)), i, j);
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
+            auto pm = QPixmap(":/cross.png");
+            pm = pm.scaled(100, 100, Qt::KeepAspectRatio);
             auto q = new QLabel(QString("row: %1, collum: %2").arg(i).arg(j));
             q->setFrameShape(QFrame::Box);
+            q->setPixmap(pm);
+            q->setScaledContents(true);
             q->show();
             grid.addWidget(q, i, j);
         }
