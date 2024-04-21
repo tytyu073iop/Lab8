@@ -12,9 +12,14 @@ void PlayLabel::mousePressEvent(QMouseEvent *event) {
             this->setPixmap(imgs[cur]);
             cur = (cur == 1) ? 0 : 1 ;
             block = true;
+            emit turnChanged(cur);
         }
     } else {
         // pass on other buttons to base class
         QLabel::mousePressEvent(event);
     }
 }
+
+// void PlayLabel::turnChanged(size_t turn) {
+
+// }

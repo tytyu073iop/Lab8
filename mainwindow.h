@@ -17,6 +17,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void changeTurn(size_t turn);
+
 private:
     Ui::MainWindow *ui;
 };

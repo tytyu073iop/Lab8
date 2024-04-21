@@ -6,6 +6,7 @@
 
 class PlayLabel : public QLabel
 {
+    Q_OBJECT
     size_t& cur;
     QPixmap* imgs;
     const size_t x, y;
@@ -13,6 +14,9 @@ class PlayLabel : public QLabel
 public:
     PlayLabel(size_t&, QPixmap*, size_t x, size_t y);
     void mousePressEvent(QMouseEvent *event);
+
+signals:
+    void turnChanged(size_t turn);
 };
 
 #endif // PLAYLABEL_H
