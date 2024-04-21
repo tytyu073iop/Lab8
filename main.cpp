@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QFrame>
 #include <QPixmap>
+#include <QDockWidget>
+#include <QToolBar>
 #include "playlabel.h"
 
 int main(int argc, char *argv[])
@@ -18,7 +20,17 @@ int main(int argc, char *argv[])
     w.setMenuWidget(new QLabel("cross"));
     QPixmap imgs[]{QPixmap(":/circle.png").scaled(100, 100, Qt::KeepAspectRatio), QPixmap(":/cross.png").scaled(100, 100, Qt::KeepAspectRatio)};
     QWidget* qw = new QWidget();
-    auto grid = PlayGrid(qw);
+    auto button = new QPushButton("clear");
+    // auto dock = new QDockWidget();
+    // dock->setWidget(button);
+    // w.addDockWidget(Qt::DockWidgetArea::BottomDockWidgetArea, dock);
+    // auto toolbar = new QToolBar();
+    // toolbar->addWidget(button);
+    // w.addToolBar(toolbar);
+    auto gr = QGridLayout(qw);
+    auto grid = PlayGrid();
+    gr.addLayout(&grid, 0, 0);
+    gr.addWidget(button, 1, 0);
     QObject::connect(&grid, &PlayGrid::winSignal, &w, &MainWindow::win);
     qDebug() << "begin";
     for (int i = 0; i < 3; ++i) {
