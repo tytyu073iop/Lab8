@@ -19,6 +19,7 @@ public:
 
 public slots:
     void changeTurn(size_t turn);
+    void win();
 
 private:
     Ui::MainWindow *ui;

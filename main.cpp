@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     QPixmap imgs[]{QPixmap(":/circle.png").scaled(100, 100, Qt::KeepAspectRatio), QPixmap(":/cross.png").scaled(100, 100, Qt::KeepAspectRatio)};
     QWidget* qw = new QWidget();
     auto grid = PlayGrid(qw);
+    QObject::connect(&grid, &PlayGrid::winSignal, &w, &MainWindow::win);
     qDebug() << "begin";
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {

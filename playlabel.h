@@ -14,6 +14,7 @@ class PlayLabel : public QLabel
 public:
     PlayLabel(size_t&, QPixmap*, size_t x, size_t y);
     void mousePressEvent(QMouseEvent *event);
+    friend class PlayGrid;
 
 signals:
     void turnChanged(size_t turn);

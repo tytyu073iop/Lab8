@@ -1,6 +1,7 @@
 #include "playgrid.h"
 #include <QDebug>
 #include <QLabel>
+#include "playlabel.h"
 
 PlayGrid::PlayGrid(QWidget *parent, size_t s) : QGridLayout(parent)
 {
@@ -32,6 +33,7 @@ void PlayGrid::GetCurPlay(long long y, long long x, size_t cur)
                 if (streak >= 3) {
                     //qDebug() << "win!";
                     Colorify(winItem);
+                    win();
                     return;
                 }
             } else {
@@ -49,6 +51,7 @@ void PlayGrid::GetCurPlay(long long y, long long x, size_t cur)
                 if (streak >= 3) {
                     //qDebug() << "win!";
                     Colorify(winItem);
+                    win();
                     return;
                 }
             } else {
@@ -65,6 +68,7 @@ void PlayGrid::GetCurPlay(long long y, long long x, size_t cur)
                 if (streak >= 3) {
                     //qDebug() << "win!";
                     Colorify(winItem);
+                    win();
                     return;
                 }
             } else {
@@ -80,12 +84,24 @@ void PlayGrid::GetCurPlay(long long y, long long x, size_t cur)
                 if (streak >= 3) {
                     //qDebug() << "win!";
                     Colorify(winItem);
+                    win();
                     return;
                 }
             } else {
                 streak = 0;
                 winItem.clear();
             }
+        }
+    }
+}
+
+void PlayGrid::win() {
+    // setMenuWidget(new QLabel("end of game!"));
+    emit winSignal();
+    for (int i = 0; i < area.size(); ++i) {
+        for (int j = 0; j < area.size(); ++j) {
+            auto q = static_cast<PlayLabel*>(itemAtPosition(j, i)->widget());
+            q->block = true;
         }
     }
 }
