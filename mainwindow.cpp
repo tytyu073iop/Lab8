@@ -14,6 +14,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::changeTurn(size_t turn) {
-    qDebug() << "change turn";
+    //qDebug() << "change turn";
     this->setMenuWidget(new QLabel(turn == 1 ? "cross" : "circle"));
 }

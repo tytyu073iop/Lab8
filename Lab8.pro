@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    playgrid.cpp \
     playlabel.cpp
 
 HEADERS += \
     mainwindow.h \
+    playgrid.h \
     playlabel.h
 
 FORMS += \

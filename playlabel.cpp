@@ -10,6 +10,7 @@ void PlayLabel::mousePressEvent(QMouseEvent *event) {
         // qDebug() << "pressed: " << x << " " << y;
         if (!block) {
             this->setPixmap(imgs[cur]);
+            emit CheckWin(x, y, cur);
             cur = (cur == 1) ? 0 : 1 ;
             block = true;
             emit turnChanged(cur);

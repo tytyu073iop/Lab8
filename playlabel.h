@@ -17,6 +17,7 @@ public:
 
 signals:
     void turnChanged(size_t turn);
+    void CheckWin(long long x, long long y, size_t turn);
 };
 
 #endif // PLAYLABEL_H
