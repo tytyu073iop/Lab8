@@ -46,5 +46,34 @@ void PlayGrid::GetCurPlay(long long y, long long x, size_t cur)
                 winItem.clear();
             }
         }
+        y = yb;
+        winItem.clear();
+        for (int i = -2; i < 3; ++i) {
+            if (area.value(x + i, QVector<size_t>(area.size())).value(y + i, 0) == cur + 1) {
+                streak++;
+                winItem.push_back(itemAtPosition(x + i, y + i)->widget());
+                if (streak >= 3) {
+                    qDebug() << "win!";
+                    return;
+                }
+            } else {
+                streak = 0;
+                winItem.clear();
+            }
+        }
+        winItem.clear();
+        for (int i = -2; i < 3; ++i) {
+            if (area.value(x + i, QVector<size_t>(area.size())).value(y - i, 0) == cur + 1) {
+                streak++;
+                winItem.push_back(itemAtPosition(x + i, y - i)->widget());
+                if (streak >= 3) {
+                    qDebug() << "win!";
+                    return;
+                }
+            } else {
+                streak = 0;
+                winItem.clear();
+            }
+        }
     }
 }
