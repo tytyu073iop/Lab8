@@ -15,8 +15,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
     size_t cp = 1;
+    MainWindow w(cp);
     w.setMenuWidget(new QLabel("cross"));
     QPixmap imgs[]{QPixmap(":/circle.png").scaled(100, 100, Qt::KeepAspectRatio), QPixmap(":/cross.png").scaled(100, 100, Qt::KeepAspectRatio)};
     QWidget* qw = new QWidget();
@@ -28,10 +28,12 @@ int main(int argc, char *argv[])
     // toolbar->addWidget(button);
     // w.addToolBar(toolbar);
     auto gr = QGridLayout(qw);
-    auto grid = PlayGrid();
+    auto grid = PlayGrid(cp);
     gr.addLayout(&grid, 0, 0);
     gr.addWidget(button, 1, 0);
     QObject::connect(&grid, &PlayGrid::winSignal, &w, &MainWindow::win);
+    QObject::connect(button, &QPushButton::clicked, &grid, &PlayGrid::clear);
+    QObject::connect(button, &QPushButton::clicked, &w, &MainWindow::changeTurnC);
     qDebug() << "begin";
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {

@@ -3,7 +3,7 @@
 #include <QLabel>
 #include "playlabel.h"
 
-PlayGrid::PlayGrid(QWidget *parent, size_t s) : QGridLayout(parent)
+PlayGrid::PlayGrid(size_t& cur, QWidget *parent, size_t s) : QGridLayout(parent), cur(cur)
 {
     area = QVector<QVector<size_t>>(s, QVector<size_t>(s, size_t(0)));
 }
@@ -91,6 +91,19 @@ void PlayGrid::GetCurPlay(long long y, long long x, size_t cur)
                 streak = 0;
                 winItem.clear();
             }
+        }
+    }
+}
+
+void PlayGrid::clear()
+{
+    for (int i = 0; i < area.size(); ++i) {
+        for (int j = 0; j < area.size(); ++j) {
+            auto q = static_cast<PlayLabel*>(itemAtPosition(j, i)->widget());
+            q->block = false;
+            q->setPixmap(QPixmap());
+            q->setStyleSheet("");
+            area[i][j] = 0;
         }
     }
 }

@@ -12,13 +12,14 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+    size_t& cur;
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(size_t& cur, QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
     void changeTurn(size_t turn);
+    void changeTurnC();
     void win();
 
 private:
